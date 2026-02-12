@@ -12,7 +12,7 @@ export function AppHeader({ className }: AppHeaderProps) {
   return (
     <header
       className={cn(
-        'bg-primary text-primary-foreground border-b border-primary/80 dark:bg-background/80 dark:text-foreground dark:border-input dark:backdrop-blur-md',
+        'bg-primary text-primary-foreground border-b border-primary/80 dark:bg-[oklch(0.10_0.02_50)] dark:text-[oklch(0.90_0.015_72)] dark:border-[oklch(0.93_0.015_72/8%)]',
         className,
       )}
     >

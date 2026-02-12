@@ -22,7 +22,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={toggle}
-      className="h-9 w-9 text-primary-foreground/70 hover:text-primary-foreground dark:text-muted-foreground dark:hover:text-foreground"
+      className="h-9 w-9 text-primary-foreground/70 hover:text-primary-foreground dark:text-[oklch(0.70_0.03_65)] dark:hover:text-[oklch(0.90_0.015_72)]"
     >
       {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
       <span className="sr-only">Toggle theme</span>
