@@ -65,7 +65,12 @@ export default function RootLayout({
         className={`${firaSans.variable} ${firaCode.variable} antialiased`}
       >
         <div className="fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-background" />
+          <img
+            src="/bg.png"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-background/85 dark:bg-background/90 backdrop-blur-sm" />
         </div>
         {children}
       </body>

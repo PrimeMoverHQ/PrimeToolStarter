@@ -12,7 +12,7 @@ export function AppHeader({ className }: AppHeaderProps) {
   return (
     <header
       className={cn(
-        'bg-background/80 backdrop-blur-md border-b border-border dark:border-input',
+        'bg-primary text-primary-foreground border-b border-primary/80 dark:bg-background/80 dark:text-foreground dark:border-input dark:backdrop-blur-md',
         className,
       )}
     >
