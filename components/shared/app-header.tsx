@@ -1,28 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { ThemeToggle } from '@/components/shared/theme-toggle'
-
-const navLinks = [
-  { href: '/', label: 'Dashboard' },
-  { href: '/design-system', label: 'Design System' },
-]
 
 interface AppHeaderProps {
   className?: string
 }
 
 export function AppHeader({ className }: AppHeaderProps) {
-  const pathname = usePathname()
-
-  async function handleLogout() {
-    await fetch('/api/logout', { method: 'POST' })
-    window.location.href = '/gate'
-  }
-
   return (
     <header
       className={cn(
@@ -33,7 +18,7 @@ export function AppHeader({ className }: AppHeaderProps) {
       )}
     >
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14">
+        <div className="flex items-center justify-center h-14">
           <Link
             href="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -41,46 +26,9 @@ export function AppHeader({ className }: AppHeaderProps) {
             <img
               src="/logo.png"
               alt="PM Framework"
-              className="h-6 w-auto"
+              className="h-8 w-auto"
             />
           </Link>
-
-          <div className="flex items-center gap-1">
-            <nav className="flex items-center gap-1">
-              {navLinks.map((link) => {
-                const isActive = link.href === '/'
-                  ? pathname === '/'
-                  : pathname.startsWith(link.href)
-
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      'px-3 py-1.5 rounded-md text-sm font-semibold transition-colors',
-                      isActive
-                        ? 'bg-white/15 text-primary-foreground dark:text-white'
-                        : 'text-primary-foreground/60 hover:text-primary-foreground hover:bg-white/10 dark:text-white/60 dark:hover:text-white',
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              })}
-            </nav>
-            <div className="ml-2 border-l border-primary-foreground/20 dark:border-white/20 pl-2">
-              <ThemeToggle />
-            </div>
-            <div className="ml-1 border-l border-primary-foreground/20 dark:border-white/20 pl-2">
-              <button
-                onClick={handleLogout}
-                className="p-1.5 rounded-md text-primary-foreground/60 hover:text-primary-foreground hover:bg-white/10 dark:text-white/60 dark:hover:text-white transition-colors"
-                title="Sign out"
-              >
-                <LogOut className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </header>

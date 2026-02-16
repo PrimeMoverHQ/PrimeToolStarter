@@ -1,13 +1,20 @@
 'use client'
 
 import Link from 'next/link'
+import { LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ThemeToggle } from '@/components/shared/theme-toggle'
 
 interface AppFooterProps {
   className?: string
 }
 
 export function AppFooter({ className }: AppFooterProps) {
+  async function handleLogout() {
+    await fetch('/api/logout', { method: 'POST' })
+    window.location.href = '/gate'
+  }
+
   return (
     <footer
       className={cn(
@@ -29,6 +36,12 @@ export function AppFooter({ className }: AppFooterProps) {
 
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <Link
+            href="/design-system"
+            className="hover:text-foreground transition-colors"
+          >
+            Design System
+          </Link>
+          <Link
             href="/privacy"
             className="hover:text-foreground transition-colors"
           >
@@ -40,6 +53,15 @@ export function AppFooter({ className }: AppFooterProps) {
           >
             Terms
           </Link>
+          <ThemeToggle />
+          <button
+            onClick={handleLogout}
+            className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+            title="Sign out"
+          >
+            <LogOut className="h-3.5 w-3.5" />
+            Sign out
+          </button>
         </div>
       </div>
     </footer>
