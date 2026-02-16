@@ -91,8 +91,7 @@ export default function GatePage() {
           </button>
         </form>
       </div>
-      <p className="mt-6 text-xs text-muted-foreground">password: Think&amp;GrowRich$100M</p>
-      <p className="mt-2 text-xs text-muted-foreground">Prime Mover LLC</p>
+      <p className="mt-8 text-xs text-muted-foreground">Prime Mover LLC</p>
     </div>
   )
 }
