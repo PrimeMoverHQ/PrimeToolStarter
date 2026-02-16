@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 interface AppFooterProps {
@@ -17,7 +18,7 @@ export function AppFooter({ className }: AppFooterProps) {
       <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
         <div className="flex items-center gap-2">
           <img
-            src="/icon.png"
+            src="/pm-icon.png"
             alt="PrimeMover"
             className="h-5 w-5 rounded-sm opacity-70"
           />
@@ -27,24 +28,18 @@ export function AppFooter({ className }: AppFooterProps) {
         </div>
 
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
-          <a
-            href="#"
+          <Link
+            href="/privacy"
             className="hover:text-foreground transition-colors"
           >
-            Privacy Policy
-          </a>
-          <a
-            href="#"
+            Privacy
+          </Link>
+          <Link
+            href="/terms"
             className="hover:text-foreground transition-colors"
           >
             Terms
-          </a>
-          <a
-            href="#"
-            className="hover:text-foreground transition-colors"
-          >
-            Help
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

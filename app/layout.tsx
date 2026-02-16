@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Fira_Sans, Fira_Code } from 'next/font/google'
 import { consoleCaptureScript } from '@/lib/console-capture'
+import { ToastProvider } from '@/components/shared/toast-provider'
+import { SessionProvider } from '@/components/providers/session-provider'
 import './globals.css'
 
 const firaSans = Fira_Sans({
@@ -17,11 +19,10 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: {
-    default: 'PrimeTools',
-    template: '%s | PrimeTools',
+    default: 'PM Framework',
+    template: '%s — PM Framework',
   },
-  description:
-    'Built with PrimeTools - PrimeMover Internal Tools Platform',
+  description: 'PM Framework by PrimeMover — Internal Tools Platform',
   robots: {
     index: false,
     follow: false,
@@ -62,17 +63,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: consoleCaptureScript }} />
       </head>
       <body
-        className={`${firaSans.variable} ${firaCode.variable} antialiased`}
+        className={`${firaSans.variable} ${firaCode.variable} antialiased bg-background`}
       >
-        <div className="fixed inset-0 -z-10">
-          <img
-            src="/bg.png"
-            alt=""
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-background/85 dark:bg-background/90 backdrop-blur-sm" />
-        </div>
-        {children}
+        <SessionProvider>
+          {children}
+          <ToastProvider />
+        </SessionProvider>
       </body>
     </html>
   )
