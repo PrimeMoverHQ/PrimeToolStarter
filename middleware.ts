@@ -11,7 +11,12 @@ function getSecret() {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Skip auth for gate paths
+  // Skip auth for v0 preview domains and gate paths
+  const hostname = request.headers.get('host') || ''
+  if (hostname.endsWith('.vusercontent.net')) {
+    return NextResponse.next()
+  }
+
   if (pathname === '/gate' || pathname === '/api/gate' || pathname === '/api/logout') {
     return NextResponse.next()
   }
