@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Fira_Sans, Fira_Code } from 'next/font/google'
 import { consoleCaptureScript } from '@/lib/console-capture'
 import { ToastProvider } from '@/components/shared/toast-provider'
-import { SessionProvider } from '@/components/providers/session-provider'
 import './globals.css'
 
 const firaSans = Fira_Sans({
@@ -65,10 +64,8 @@ export default function RootLayout({
       <body
         className={`${firaSans.variable} ${firaCode.variable} antialiased bg-background`}
       >
-        <SessionProvider>
-          {children}
-          <ToastProvider />
-        </SessionProvider>
+        {children}
+        <ToastProvider />
       </body>
     </html>
   )

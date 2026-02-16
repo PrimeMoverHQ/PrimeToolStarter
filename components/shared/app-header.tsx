@@ -2,11 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useSession } from 'next-auth/react'
 import { LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/shared/theme-toggle'
-import { signOutAction } from '@/app/(auth)/actions'
 
 const navLinks = [
   { href: '/', label: 'Dashboard' },
@@ -19,7 +17,11 @@ interface AppHeaderProps {
 
 export function AppHeader({ className }: AppHeaderProps) {
   const pathname = usePathname()
-  const { data: session } = useSession()
+
+  async function handleLogout() {
+    await fetch('/api/logout', { method: 'POST' })
+    window.location.href = '/gate'
+  }
 
   return (
     <header
@@ -69,22 +71,15 @@ export function AppHeader({ className }: AppHeaderProps) {
             <div className="ml-2 border-l border-primary-foreground/20 dark:border-white/20 pl-2">
               <ThemeToggle />
             </div>
-            {session?.user && (
-              <div className="ml-1 border-l border-primary-foreground/20 dark:border-white/20 pl-2 flex items-center gap-2">
-                <span className="text-xs text-primary-foreground/70 dark:text-white/70 hidden sm:inline">
-                  {session.user.email}
-                </span>
-                <form action={signOutAction}>
-                  <button
-                    type="submit"
-                    className="p-1.5 rounded-md text-primary-foreground/60 hover:text-primary-foreground hover:bg-white/10 dark:text-white/60 dark:hover:text-white transition-colors"
-                    title="Sign out"
-                  >
-                    <LogOut className="h-4 w-4" />
-                  </button>
-                </form>
-              </div>
-            )}
+            <div className="ml-1 border-l border-primary-foreground/20 dark:border-white/20 pl-2">
+              <button
+                onClick={handleLogout}
+                className="p-1.5 rounded-md text-primary-foreground/60 hover:text-primary-foreground hover:bg-white/10 dark:text-white/60 dark:hover:text-white transition-colors"
+                title="Sign out"
+              >
+                <LogOut className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
